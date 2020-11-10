@@ -44,7 +44,7 @@
   "main": "dist/index.js",
   "name": "if-webpack-loader",
   "peerDependencies": {
-    "loader-utils": "^2"
+    "webpack": "^4 || ^5"
   },
   "prettier": {
     "arrowParens": "avoid",
