@@ -54,7 +54,7 @@ function parseSource(source: string): Span[] {
   /* eslint-disable @typescript-eslint/no-non-null-assertion */
   const spans: Span[] = [];
   let lastIndex = 0;
-  const re = /((?<preM>\/\*[^\S\r\n]*#[^\S\r\n]*(?<typeM>if|elif|else|endif)(?![\w$])(?<condM>((?!\*\/).)*))(?<bodyM>\r?\n((?!\*\/)[\s\S])*)?(?<postM>\*\/))|(\/\*((?!\*\/)[\s\S])*\*\/)|(?<preS>\/\/[*/]?[^\S\r\n]*#[^\S\r\n]*(?<typeS>if|elif|else|endif)(?![\w$])(?<condS>.*))|(\/\/.*)/g;
+  const re = /((?<preM>\/\*[^\S\r\n]*#[^\S\r\n]*(?<typeM>if|elif|else|endif)(?![\w$])(?<condM>((?!\*\/).)*))(?<bodyM>\r?\n((?!\*\/)[\s\S])*)?(?<postM>\*\/))|(\/\*((?!\*\/)[\s\S])*\*\/)|(?<preS>\/\/\/?[^\S\r\n]*#[^\S\r\n]*(?<typeS>if|elif|else|endif)(?![\w$])(?<condS>.*))|(\/\/.*)/g;
   let m: RegExpExecArray | null = null;
   while ((m = re.exec(source))) {
     spans.push({ type: 'text', text: source.slice(lastIndex, m.index) });

@@ -73,38 +73,6 @@ import { debug } from 'ordinary-debugger';
 debug();
 ```
 
-Would you like to comment out / uncomment code easily? Try this:
-
-```javascript
-"To comment out this, remove the first '/'";
-//* #if OS === 'android'
-import { debug } from 'awesome-debugger-for-android';
-/**/
-
-"To uncomment this, prepend '/'";
-/* #else
-import { debug } from 'ordinary-debugger';
-/**/
-
-// #endif
-
-debug();
-```
-
-```javascript
-/* #if OS === 'android'
-import { debug } from 'awesome-debugger-for-android';
-/**/
-
-//* #else
-import { debug } from 'ordinary-debugger';
-/**/
-
-// #endif
-
-debug();
-```
-
 ## Limitation
 Because if-webpack-loader is not aware of string literals, comments in string literals (e.g. `"Hello, // #if world!"`) might cause unexpected errors.
 

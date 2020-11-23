@@ -475,125 +475,26 @@ test('special-comment', () => {
       `
 /// #if DEBUG
 f();
+/// #elif RELEASE
+g();
 /// #else
-g();
-/* #endif */
-`,
-      {
-        DEBUG: true,
-      },
-    ),
-  ).toBe(
-    `
-/***********/
-f();
-/********
-****
-***********/
-`,
-  );
-  expect(
-    preprocess(
-      `
-//* #if DEBUG
-f();
-/**/
-/* #else
-g();
-/**/
-// #endif
-`,
-      {
-        DEBUG: true,
-      },
-    ),
-  ).toBe(
-    `
-/***********/
-f();
-/**/
-/*******
-****
-****
-********/
-`,
-  );
-  expect(
-    preprocess(
-      `
-//* #if DEBUG
-f();
-/**/
-/* #else
-g();
-/**/
-// #endif
+h();
+/// #endif
 `,
       {
         DEBUG: false,
+        RELEASE: false,
       },
     ),
   ).toBe(
     `
 /************
 ****
-****
-*******/
-g();
-/*/*
-********/
-`,
-  );
-  expect(
-    preprocess(
-      `
-/* #if DEBUG
-f();
-/**/
-//* #else
-g();
-/**/
-// #endif
-`,
-      {
-        DEBUG: true,
-      },
-    ),
-  ).toBe(
-    `
-/**********/
-f();
-/*/*
-*********
-****
+*****************
 ****
 ********/
-`,
-  );
-  expect(
-    preprocess(
-      `
-/* #if DEBUG
-f();
-/**/
-//* #else
-g();
-/**/
-// #endif
-`,
-      {
-        DEBUG: false,
-      },
-    ),
-  ).toBe(
-    `
-/***********
-****
-****
-********/
-g();
-/**/
-/*******/
+h();
+/********/
 `,
   );
 });
